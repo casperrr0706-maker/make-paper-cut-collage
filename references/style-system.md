@@ -24,7 +24,7 @@ Avoid dominant horizontal scan lines, coarse pulp texture, excessive wrinkles, t
 
 ## Preserved-photo paper-composition mode
 
-Activate this mode only when the user asks to preserve, retain, keep, or show the original photograph. It is a clean two-zone paper composition, not a mockup, book spread, or before/after board.
+This is the **default mode for all photo inputs**. Activate paper-only mode only when the user explicitly says "only paper-cut", "no original photo", "just the collage", or similar. It is a clean two-zone paper composition, not a mockup, book spread, or before/after board.
 
 - Resolve the default splice from the source orientation, approximately 50/50: portrait photos (`height > width`) use photo-left and paper-right; landscape or square photos (`width >= height`) use photo-above and paper-below.
 - Default the complete two-panel canvas to `3:4` width-to-height portrait. Follow an explicit alternate final ratio.
