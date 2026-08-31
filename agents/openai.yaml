@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Cut Collage"
+  short_description: "Create tactile hand-cut paper collages and photo split layouts"
+  default_prompt: "Use $make-paper-cut-collage to turn this image or description into a clean hand-cut paper collage."
