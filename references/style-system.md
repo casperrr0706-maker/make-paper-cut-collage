@@ -4,11 +4,11 @@
 
 Translate one subject, scene, or feeling into a sparse physical construction made primarily from hand-cut patterned paper pieces. Make the finished work feel handmade and tactile while retaining the clarity and restraint of an editorial illustration.
 
-The defining move is **subject-as-cut-paper**, not a conventional photo pasted down at its corners. The collage is flat and front-facing—no sculptural depth, no cast shadows.
+The defining move is **subject-as-cut-paper**, not a conventional photo pasted down at its corners. The collage is completely flat and front-facing—every paper piece is a flat solid-color cutout with zero perspective, zero 3D volume, and zero curvature. Each piece has one uniform solid color; no gradients, highlights, or painted shadows inside a piece. Depth and form come ONLY from stacking multiple flat pieces and choosing different flat color shades. No sculptural depth, no cast shadows.
 
 ## Soft structural scene distillation — preferred default
 
-For photo transformations, preserve one to three identification anchors and rebuild the main subject from approximately 8–15 coherent broad or medium hand-cut paper pieces.
+For photo transformations, preserve one to three identification anchors and rebuild the main subject from approximately 12–18+ coherent broad or medium hand-cut paper pieces. Preserve all decorative details from the source photo (patterns, icons, small elements). Do not reduce the subject to a few blank shapes.
 
 Preserve perceived volume through adjacent light, middle, and dark paper faces, overlap order, and negative-space cuts. The collage itself must remain flat and front-facing; do not create inflated or sculptural paper depth.
 
@@ -35,8 +35,8 @@ This is the **default mode for all photo inputs**. Activate paper-only mode only
 - Generate one isolated, text-free paper-cut motif on a genuinely transparent RGBA background and combine it with the original photograph through deterministic raster composition. Do not generate journal paper, page texture, captions, borders, broad page shadows, or the complete two-panel image with the image model. Build one continuous synthesized paper surface across the complete output, then scale, place, and shadow the transparent motif locally; no second paper background may enter the composite.
 - Present the retained crop as a borderless physical photo print with unchanged source pixels: no white stock edge and no grain, tint, contrast, or print-noise overlay on the image. Keep the print straight and aligned with its photo zone by default; rotate only when explicitly requested. Form every exposed edge from a slowly varying torn contour with fine translucent fiber breakup and soft antialiasing. Avoid regular zigzags, uniformly noisy sawteeth, hard digital cutout edges, or thick white borders. Settle the print onto the page with a broad pale ambient shadow plus a narrow contact shadow that follows the torn fibers; avoid one uniform dark halo or dramatic floating depth. Clip the photo and both shadows to the photo zone so they cannot overlap paper-panel content or the paper-cut motif. Avoid Polaroid proportions, frames, curled paper, or corner fasteners.
 - Use one continuous clean warm-white journal-paper texture across the complete output, including any uncovered photo-zone space. The base must read as warm white rather than beige or yellow. Build the surface primarily from clearly perceptible fine diffuse fibers in varied directions, a smaller number of softer long fibers, localized short thread clusters, subtle mid- and fine-scale pulp-density relief, sparse neutral inclusions, and a few faint discontinuous scan traces. The fibers and pulp relief must survive normal fitted-screen viewing; an almost textureless digital-white field is not acceptable. Keep broad low-frequency tonal variation extremely weak so it cannot resemble stains, clouds, grime, water damage, or uneven aging. Increase tactile visibility through local thread contrast rather than overall darkening or yellowing. The texture stays low contrast, free of dominant horizontal lines, irregular rather than mechanically repeated, and quieter than the image and collage. Because the paper comes from one deterministic synthesis pass, no sampling, stretching, mirroring, tiling, copied panel pixels, color shift, texture discontinuity, or copied collage content is permitted. Avoid heavy yellowing, dirt, cracks, burns, stains, grunge, or theatrical aging.
-- Leave about 75% of the paper panel as quiet negative space by default. Place one paper-cut-and-caption group, about 25% of the paper panel, in a visually balancing corner. Never center the group unless explicitly requested. Keep the whole group inset by at least about 9% of the panel's shorter side so no paper edge, shadow, or title touches the paper boundary. The group may grow for expressive clarity but must not exceed 60% of the paper panel.
-- For image-based work, default to one concise factual English title of one to three words, set in clear faded 26–32 pt-equivalent typewriter lettering, 28 pt by default, close to—but never over—the paper-cut motif. Use adequate tracking and moderately dark faded-ink contrast for immediate recognition and visual harmony. Exact user wording overrides it; an explicit no-text request removes it. Add the title deterministically after generating the text-free motif.
+- Leave about 60% of the paper panel as quiet negative space by default. Place one paper-cut-and-caption group, about 40% of the paper panel, in a visually balancing corner. Never center the group unless explicitly requested. Keep the whole group inset by at least about 9% of the panel's shorter side so no paper edge, shadow, or title touches the paper boundary. The group may grow for expressive clarity but must not exceed 60% of the paper panel.
+- For image-based work, default to NO text. Add a concise factual English title of one to three words only when the user explicitly requests it, set in clear faded 26–32 pt-equivalent typewriter lettering, 28 pt by default, close to—but never over—the paper-cut motif. Use adequate tracking and moderately dark faded-ink contrast for immediate recognition and visual harmony. Exact user wording overrides it. Add the title deterministically after generating the text-free motif.
 - Do not introduce tickets, receipts, labels, stamps, seals, stickers, or meaningless pseudo-writing.
 - Require genuine transparency around the generated motif. Reject an opaque matte, baked checkerboard, paper-colored rectangle, edge halo, full page, or full-panel background. Retain narrow overlaps between paper pieces inside the motif, but create the motif-to-page contact shadow deterministically from its alpha mask.
 - Default to one motif-generation call. Allow at most one targeted generative revision, only for failed subject recognition or failed cut-paper material. Correct layout, scale, safe inset, paper texture, photo mounting, and caption placement in the deterministic compositor rather than regenerating.
@@ -44,7 +44,7 @@ This is the **default mode for all photo inputs**. Activate paper-only mode only
 ## Composition
 
 - Use a white or warm-white journal page as the field.
-- For a minimal isolated object, let the motif occupy roughly 20–30% of the canvas. For the preferred structural photo transformation, use the soft structural scene-distillation dimensions above. In preserved-photo mode, keep the motif-and-caption group compact at about 25% of the paper panel.
+- For a minimal isolated object, let the motif occupy roughly 20–30% of the canvas. For the preferred structural photo transformation, use the soft structural scene-distillation dimensions above. In preserved-photo mode, keep the motif-and-caption group compact at about 40% of the paper panel.
 - Preserve approximately 60–75% visually quiet paper for the preferred structural default, and allow more negative space for deliberately minimal isolated objects.
 - Prefer one isolated motif or one compact motif group.
 - Outside preserved-photo mode, place the motif near the center or lower-middle with slight asymmetry and breathing room.
@@ -55,11 +55,11 @@ This is the **default mode for all photo inputs**. Activate paper-only mode only
 ## Material language
 
 - Keep the result visually flat and front-facing, like cut paper assembled directly on a journal page. Avoid sculptural depth, inflated paper volume, cast shadows, or photoreal object rendering.
-- Build with approximately 8–15 broad or medium hand-cut pieces of patterned paper, adjusted to subject structure. Prefer coherent structural planes over tiny fragments; combine adjacent similar-color areas when subdivision adds no recognition.
-- Favor solid-color paper and familiar basic patterns: dots, narrow stripes, grid, checks, simple florals, small botanical prints, or restrained patterns. Within each piece, preserve visible paper fiber, soft edge fuzz, and mild analog pigment variation. Avoid digital gradients, glossy vector fills, photographic texture, marbling, and ornate multicolor prints. Natural overlap darkening and gentle mottling are desirable.
-- Make overlapping paper edges legible with slight darkening where one piece presses over another. Preserve shallow stacking rather than dramatic depth. No cast shadows or drop shadows.
+- Build with approximately 12–18+ broad or medium hand-cut pieces of patterned paper, adjusted to subject structure. Prefer coherent structural planes over tiny fragments; combine adjacent similar-color areas when subdivision adds no recognition.
+- Favor solid-color paper and familiar basic patterns: dots, narrow stripes, grid, checks, simple florals, small botanical prints, or restrained patterns. Each paper piece has one uniform solid color with no internal gradients, highlights, or painted shadows. Major paper pieces may carry a low-contrast embedded flat pattern (fine dots, narrow stripes, light grid, washi-paper grain) that is uniform across the piece with no tonal variation. Within each piece, preserve visible paper fiber, soft edge fuzz, and mild analog pigment variation. Avoid digital gradients, glossy vector fills, photographic texture, marbling, and ornate multicolor prints. Natural overlap darkening and gentle mottling are desirable.
+- Make overlapping paper edges legible with slight darkening where one piece presses over another. Preserve shallow stacking rather than dramatic depth. No cast shadows or drop shadows. No coasters, bases, stands, pedestals, or added 3D props. Objects sit directly on the page.
 - Include subtle seams, uneven tears, tiny folds, or one lifted corner. Add restrained wrinkles or creases only when they clarify the source silhouette, surface direction, or volume. The combined visibly wrinkled area must stay below about 15% of the collage-motif region; do not distress every piece uniformly.
-- Combine torn edges and clean-cut edges. Emphasize torn edges on outer contours and major breaks; keep internal structural cuts clean. Avoid making every edge equally distressed.
+- Combine torn edges and clean-cut edges. Emphasize torn edges on outer contours and major breaks—outer contours must show visible hand-torn fibrous edges with irregular ragged strands and fine fiber breakup. Keep internal structural cuts clean. Avoid making every edge equally distressed.
 - Do not add graphite, pencil, pen, or ink contours. When paper alone needs more definition, use a narrower paper strip, a torn negative-space cutout, an overlap seam, or a restrained stripe/grid pattern made from paper.
 
 ## Subject construction
@@ -85,7 +85,7 @@ This is the **default mode for all photo inputs**. Activate paper-only mode only
 
 ## Color
 
-- Derive the palette from the source image when one exists.
+- Derive the palette faithfully from the source image when one exists. A slightly chalky or softened feel is fine, but do NOT heavily gray or desaturate—amber must still read as amber, blue as blue, green as green.
 - Limit the working palette to about 3–6 colors plus paper and neutral ink.
 - Use muted or lightly chalky paper colors with one controlled stronger accent when useful.
 - Preserve subtle overlap darkening at joins.
@@ -94,7 +94,7 @@ This is the **default mode for all photo inputs**. Activate paper-only mode only
 
 ## Typography
 
-- For image-based work, default to one factual one-to-three-word English summary title. For description-only work, default to no text.
+- For image-based work, default to NO text. Add a factual one-to-three-word English title only when the user explicitly requests it. For description-only work, default to no text.
 - Exact supplied wording overrides the automatic summary; explicit no-text instructions override both.
 - Use at most one short title plus one compact metadata line when requested.
 - Prefer clear faded typewriter lettering at a 26–32 pt equivalent, 28 pt by default, or compact hand lettering only when the user requests it.
@@ -109,5 +109,8 @@ Do not introduce these elements unless the user asks for them:
 - tickets, receipts, labels, postage, stamps, seals, or stickers
 - newspaper clippings, maps, ribbons, lace, or botanical scrapbook filler
 - visible paper rolls, scissors, pens, hands, or craft-table clutter
+- coasters, bases, stands, pedestals, or any added 3D props
+- colored or patterned page backgrounds (pink, blue, polka dots, stripes, grids); the page must be clean warm-white journal paper unless explicitly requested
 - dense journaling, long quotes, ornamental calligraphy, or illegible pseudo-type
 - cast shadows, drop shadows, strong grunge, browned paper, heavy film grain, dramatic spotlights, or deep depth
+- gradients, highlights, or painted shading inside a single paper piece
