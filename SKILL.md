@@ -7,6 +7,19 @@ description: Transform a supplied photo or text description into a clean, tactil
 
 Create one restrained bitmap artwork that feels physically assembled from hand-cut patterned paper on a journal page. Favor a structurally readable motif, generous negative space, simple muted paper colors or familiar patterns, and believable torn edges over dense scrapbook decoration. The collage is flat and front-facing—no sculptural depth, no cast shadows.
 
+## Local style defaults (user-customized)
+
+These preferences override the generic defaults below for every generation. Read them before shaping any prompt.
+
+- **Completely flat 2D.** Every paper piece is a flat solid-color cutout. Zero perspective, zero 3D volume, zero curvature. Never render a glass as a 3D cylinder or a mug as a 3D cup—use flat front silhouettes (a vertical rectangle for a tall glass, a rounded shape for a mug). No ellipse rims, no glass thickness, no inner depth.
+- **No shading inside a single piece.** Each paper piece has one uniform solid color. No gradients, highlights, painted shadows, airbrush, watercolor wash, or tonal variation within a piece. Depth and form come ONLY from stacking multiple flat pieces (visible overlap edge seams) and from choosing different flat color shades—never from painting volume.
+- **Rich detail, not simplistic.** Use 12–18+ overlapping paper pieces. Preserve all decorative details from the source photo (patterns, icons, small elements, text printed on objects). Do not reduce the subject to a few blank shapes.
+- **Colors from the source, lightly muted only.** Derive the palette faithfully from the source photo. A slightly chalky or softened feel is fine, but do NOT heavily gray or desaturate—amber must still read as amber, blue as blue, green as green.
+- **No text by default.** Do not add captions, titles, or any lettering unless the user explicitly requests it. This overrides the automatic summary-title default below.
+- **Clear hand-torn edges.** Outer contours must show visible hand-torn fibrous edges with irregular ragged strands and fine fiber breakup. Internal overlap edges may be cleaner.
+- **Subtle flat paper patterns.** Major paper pieces carry a low-contrast embedded flat pattern (fine dots, narrow stripes, light grid, washi-paper grain). The pattern is uniform across the piece with no tonal variation.
+- **No added 3D props or shadows.** No coasters, bases, stands, pedestals, or cast/drop/ambient shadows. Objects sit directly on the page.
+
 ## Load the style rules
 
 Read [references/style-system.md](references/style-system.md) before generating. Read [references/prompt-recipes.md](references/prompt-recipes.md) when shaping or revising the image prompt.
@@ -64,7 +77,7 @@ Use this mode **only** when the user explicitly says "only paper-cut", "no origi
 
 ## Handle text
 
-- For image-based work, default to one factual one-to-three-word English summary title. For description-only generation, default to no text.
+- For image-based work, default to NO text (user preference in Local style defaults above). Add a title only when the user explicitly requests it. For description-only generation, default to no text.
 - If the user supplies exact wording, use it instead. If the user explicitly requests no text, omit it.
 - When requested, allow one short title and optionally one compact metadata line containing a date, location, or number.
 - Default to English; use another language only when requested or supplied.
