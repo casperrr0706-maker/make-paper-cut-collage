@@ -17,22 +17,16 @@ Use the bundled images under `assets/style-references/` only when visual inspect
 
 Classify the request as one of these paths:
 
-- **Photo transformation:** Extract the main subject, silhouette, palette, or mood from the supplied image and rebuild it as a flat paper-cut collage.
-- **Preserved-photo paper composition:** When the user asks to preserve or retain the original photo, keep a faithful, unredrawn source-photo print and pair it with a separate paper-cut collage paper panel.
+- **Preserved-photo paper composition (DEFAULT for photo inputs):** Keep a faithful, unredrawn source-photo print and pair it with a separate paper-cut collage paper panel on a continuous warm-white journal sheet. This is the default mode for any photo input unless the user explicitly asks for paper-only.
+- **Paper-only transformation:** When the user explicitly says "only paper-cut", "no original photo", "just the collage", or similar, extract the main subject from the supplied image and rebuild it as a flat paper-cut collage on a full journal-paper canvas.
 - **Description generation:** Invent a single clear paper-cut motif from the brief.
 - **Targeted revision:** Change only the requested property of a previously generated collage and preserve all other approved properties.
 
-Choose the transformation mode from the user's wording. If unspecified, use these defaults:
+**Default mode rule:** For any request that includes a photo and does not explicitly say "only paper-cut" / "no original photo" / "just the collage", use the preserved-photo paper composition mode. Do not default to paper-only transformation.
 
-- For any photo transformation, preserve one to three identification anchors and, when useful, add one or two quiet source-derived environmental echoes behind or beneath the subject. Use them to improve recognition or mood, never as generic scrapbook decoration.
-- For a pet, person, food, plant, or single object, rebuild the recognizable subject from cut-paper shapes and sparse narrow-paper details. Do not preserve facial identity.
-- For a travel photo or complex scene, select one defining anchor and simplify aggressively instead of reproducing the whole scene.
-- For an emotional or atmospheric brief, derive the palette, rhythm, and one symbolic motif rather than illustrating every noun literally.
-- Use a cropped modern photo fragment, photocopy texture, or halftone only when the user requests it or when it materially improves recognition. Never make it look like vintage ephemera by default.
+## Preserve the original photo (default mode)
 
-## Preserve the original photo
-
-Use this mode only when the user asks to preserve, retain, keep, or show the original photo. User instructions always override these defaults.
+This is the **default mode for all photo inputs**. Use it unless the user explicitly asks for paper-only ("only paper-cut", "no original photo", "just the collage"). User instructions always override these defaults.
 
 - Choose the layout orientation from the source by default: for a portrait photo (`height > width`), place the faithful photo at left and the paper-cut collage paper panel at right; for a landscape or square photo (`width >= height`), place the faithful photo above and the paper panel below.
 - Let the photograph occupy approximately 50% of the finished canvas and the paper panel approximately 50%.
@@ -50,13 +44,23 @@ Use this mode only when the user asks to preserve, retain, keep, or show the ori
 
 Read the preserved-photo section in [references/style-system.md](references/style-system.md) and use the paper-composition recipe in [references/prompt-recipes.md](references/prompt-recipes.md) for this mode.
 
+## Paper-only transformation (explicit request only)
+
+Use this mode **only** when the user explicitly says "only paper-cut", "no original photo", "just the collage", "只要剪纸", "不要原图", or similar. Never use it by default for photo inputs.
+
+- Generate one complete flat paper-cut collage on a full continuous warm-white journal-paper canvas.
+- The background must be a flat continuous paper surface filling the entire canvas — **never** a notebook, book, card, framed object, or anything with rounded corners, thickness, spine, hardcover, or 3D volume.
+- Pass the source photo as an image reference so the model matches the subject's exact silhouette and proportions.
+- Use the photo-transformation recipe in [references/prompt-recipes.md](references/prompt-recipes.md).
+- Add "no notebook, no book, no card, no frame, no rounded corners, no thickness, no hardcover, flat paper surface filling entire canvas" to the avoid list.
+
 ## Set the format
 
 - Use `3:4` portrait when there is no input image and the user gives no ratio.
 - For any image-based collage, default the finished asset to `3:4` width-to-height portrait unless the user overrides it. In preserved-photo mode this ratio applies to the complete photo-and-paper composite.
 - For a minimal isolated object, let the motif occupy roughly 20–30% of the paper canvas. For the preferred structural photo transformation, let the complete motif group's bounding box occupy roughly 45–60% of the canvas width and 35–50% of its height, usually near the center or lower-middle, while retaining approximately 60–75% visually quiet paper. In preserved-photo mode, keep the motif-and-caption group compact at about 40% of the paper panel unless the user requests otherwise.
 - On every paper-only canvas or paper panel, keep the complete paper-cut motif and any text visibly inset from all page edges by at least about 9% of the shorter paper dimension unless the user explicitly requests edge contact or cropping.
-- Present clean warm-white journal paper, never beige or strongly yellow. Its photographically believable uncoated notebook surface must combine unmistakably visible fine diffuse fibers in varied directions, a smaller number of softer long fibers, subtle mid- and fine-scale pulp-density variation, sparse neutral inclusions, and a few faint discontinuous scan traces. The texture must still read when the complete image is fitted to an ordinary screen: a nearly blank digital-white field is a failure. Build that visibility from localized fibers, short thread clusters, and fine pulp relief—not from stains or broad tonal clouds. Keep broad low-frequency mottling extremely weak so it cannot resemble grime, water damage, or uneven aging. The paper must remain clean, low contrast, non-repeating, and continuous across every exposed canvas area. Avoid dominant horizontal lines, stretched or mirrored texture, mechanical tiling, excessive yellowing, dirt, cracks, burns, water marks, grunge, and theatrical archival aging. A faint dot grid remains optional only when it supports the composition.
+- Present clean warm-white journal paper, never beige or strongly yellow. Its photographically believable uncoated paper surface must combine unmistakably visible fine diffuse fibers in varied directions, a smaller number of softer long fibers, subtle mid- and fine-scale pulp-density variation, sparse neutral inclusions, and a few faint discontinuous scan traces. The texture must still read when the complete image is fitted to an ordinary screen: a nearly blank digital-white field is a failure. Build that visibility from localized fibers, short thread clusters, and fine pulp relief—not from stains or broad tonal clouds. Keep broad low-frequency mottling extremely weak so it cannot resemble grime, water damage, or uneven aging. The paper must remain clean, low contrast, non-repeating, and continuous across every exposed canvas area. Avoid dominant horizontal lines, stretched or mirrored texture, mechanical tiling, excessive yellowing, dirt, cracks, burns, water marks, grunge, and theatrical archival aging. A faint dot grid remains optional only when it supports the composition.
 
 ## Handle text
 
