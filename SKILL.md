@@ -19,6 +19,7 @@ These preferences override the generic defaults below for every generation. Read
 - **Clear hand-torn edges.** Outer contours must show visible hand-torn fibrous edges with irregular ragged strands and fine fiber breakup. Internal overlap edges may be cleaner.
 - **Subtle flat paper patterns.** Major paper pieces carry a low-contrast embedded flat pattern (fine dots, narrow stripes, light grid, washi-paper grain). The pattern is uniform across the piece with no tonal variation.
 - **No added 3D props or shadows.** No coasters, bases, stands, pedestals, or cast/drop/ambient shadows. Objects sit directly on the page.
+- **Clean warm-white paper background only.** The page background must be the default clean warm-white journal paper. Never use colored backgrounds (pink, blue, etc.) or patterned backgrounds (polka dots, stripes, grids) unless the user explicitly requests them. Do not add post-processing overlays to the paper panel.
 
 ## Load the style rules
 
