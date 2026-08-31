@@ -126,19 +126,116 @@ python scripts/compose_direct_split.py \
 
 ## 安装
 
+### 1. 克隆仓库
+
 ```bash
 git clone https://github.com/casperrr0706-maker/make-paper-cut-collage.git
 ```
 
-将完整文件夹放在您的技能目录中。在豆包/agent-mode 系统上，通常是：
+或者从 GitHub 下载 ZIP 并解压。
+
+### 2. 放入技能目录
+
+将整个 `make-paper-cut-collage` 文件夹复制到您的 agent 技能目录中：
+
+| 平台 | 路径 |
+| --- | --- |
+| **豆包 (agent-mode)** | `~/.doubao/agent_mode/workspace/.user_skills/make-paper-cut-collage/` |
+| **Codex** | `~/.codex/skills/make-paper-cut-collage/` |
+| **Claude Desktop** | `~/.claude/skills/make-paper-cut-collage/` |
+| **其他 agent** | 请参考对应 agent 的技能安装文档 |
+
+Windows 系统上，豆包路径通常为：
 
 ```text
-~/.doubao/agent_mode/workspace/.user_skills/make-paper-cut-collage/
+%USERPROFILE%\.doubao\agent_mode\workspace\.user_skills\make-paper-cut-collage\
 ```
 
-如果技能没有立即出现，重新加载 agent 以便技能目录发现它，然后通过 `$make-paper-cut-collage` 或匹配的自然语言请求调用它。
+### 3. 重启 / 重新加载
 
-默认使用内置图像生成。手动运行合成器需要 Python 和 Pillow。
+如果技能没有立即出现，请重启或重新加载 agent，以便技能目录发现它。
+
+### 依赖
+
+- **图像生成**：默认使用 agent 内置的图像生成工具，无需额外配置。
+- **手动合成器**（可选）：如果需要直接运行 `scripts/compose_direct_split.py`，需要 Python 3 和 Pillow：
+
+```bash
+pip install Pillow
+```
+
+## 使用方法
+
+### 调用技能
+
+有两种方式触发技能：
+
+**显式调用：**
+```text
+使用 $make-paper-cut-collage 处理这张照片。
+```
+
+**自然语言：**
+```text
+把这张照片改成剪纸风格
+Turn this photo into a paper-cut collage
+做一个剪纸拼贴效果
+```
+
+当请求中提到剪纸、paper-cut、cut-paper、paper collage 等关键词时，技能会自动激活。
+
+### 转换照片（仅剪纸）
+
+主体由手工纹样纸张重构，源照片不出现在最终作品中。
+
+```text
+使用 $make-paper-cut-collage 将这张猫的照片变成手工剪纸拼贴。
+```
+
+```text
+把这张建筑照片改成剪纸风格，不要文字。
+```
+
+### 保留原始照片（原图+剪纸并置）
+
+在一侧保留原始照片不变，另一侧放置紧凑的剪纸诠释。这是照片输入的默认模式。
+
+```text
+使用 $make-paper-cut-collage 保留这张照片，并在旁边添加剪纸版本。
+```
+
+```text
+用剪纸风格处理这张照片，保留原图。
+```
+
+### 从描述生成
+
+```text
+使用 $make-paper-cut-collage 创建一张关于雨天孤独感的蓝灰色剪纸海报。
+```
+
+### 调整输出
+
+您可以在请求中指定以下选项：
+
+| 选项 | 说明 | 示例 |
+| --- | --- | --- |
+| **比例** | 最终画布宽高比 | "用3:4竖版" / "1:1方形" |
+| **文字** | 添加或移除标题文字 | "不要文字" / "加标题 SEASIDE" |
+| **图案大小** | 调整剪纸图案的大小 | "图案大一点" |
+| **图案位置** | 移动图案到不同角落 | "图案放左下角" |
+| **阴影** | 调整接触阴影强度 | "阴影少一点" / "不要阴影" |
+| **照片裁剪** | 控制源照片的裁剪方式 | "不要裁剪照片" |
+
+### 完整请求示例
+
+```text
+使用 $make-paper-cut-collage 处理这张旅行照片。保留原图在左侧，剪纸版本在右侧。3:4比例。标题："SEASIDE"。
+```
+
+```text
+把这张照片改成剪纸拼贴风格，保留原图，竖版4:3，不要文字，图案小一点。
+```
 
 ## 项目结构
 
