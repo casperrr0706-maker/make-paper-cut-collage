@@ -126,19 +126,116 @@ Run `python scripts/compose_direct_split.py --help` for layout, aspect, crop, mo
 
 ## Installation
 
+### 1. Clone the repository
+
 ```bash
 git clone https://github.com/casperrr0706-maker/make-paper-cut-collage.git
 ```
 
-Place the complete folder in your skills directory. On Doubao/agent-mode systems, this is typically:
+Or download the ZIP from GitHub and extract it.
+
+### 2. Place in your skills directory
+
+Copy the entire `make-paper-cut-collage` folder into your agent's skills directory:
+
+| Platform | Path |
+| --- | --- |
+| **Doubao (agent-mode)** | `~/.doubao/agent_mode/workspace/.user_skills/make-paper-cut-collage/` |
+| **Codex** | `~/.codex/skills/make-paper-cut-collage/` |
+| **Claude Desktop** | `~/.claude/skills/make-paper-cut-collage/` |
+| **Other agents** | Refer to your agent's skill installation documentation |
+
+On Windows, the Doubao path is typically:
 
 ```text
-~/.doubao/agent_mode/workspace/.user_skills/make-paper-cut-collage/
+%USERPROFILE%\.doubao\agent_mode\workspace\.user_skills\make-paper-cut-collage\
 ```
 
-If the skill does not appear immediately, reload the agent so the skill catalog can discover it, then invoke it with `$make-paper-cut-collage` or a matching natural-language request.
+### 3. Reload / Restart
 
-Built-in image generation is used by default. Running the compositor manually requires Python and Pillow.
+If the skill does not appear immediately, restart or reload your agent so the skill catalog can discover it.
+
+### Dependencies
+
+- **Image generation**: Uses the agent's built-in image generation tool by default — no extra setup needed.
+- **Manual compositor** (optional): If you want to run `scripts/compose_direct_split.py` directly, you need Python 3 and Pillow:
+
+```bash
+pip install Pillow
+```
+
+## Usage
+
+### Invoke the skill
+
+You can trigger the skill in two ways:
+
+**Explicit call:**
+```text
+Use $make-paper-cut-collage to process this photo.
+```
+
+**Natural language:**
+```text
+把这张照片改成剪纸风格
+Turn this photo into a paper-cut collage
+做一个剪纸拼贴效果
+```
+
+The skill activates when the request mentions paper-cut, cut-paper, 剪纸, paper collage, or similar terms.
+
+### Transform a photo (paper only)
+
+The subject is reconstructed from hand-cut patterned paper; the source photo does not appear in the final artwork.
+
+```text
+Use $make-paper-cut-collage to turn this cat photo into a hand-cut paper collage.
+```
+
+```text
+把这张建筑照片改成剪纸风格，不要文字。
+```
+
+### Preserve the original photo (photo + paper split)
+
+Keeps the original photo unchanged on one side, with a compact paper-cut interpretation on the other side. This is the default mode for photo inputs.
+
+```text
+Use $make-paper-cut-collage to preserve this photo and add a paper-cut version beside it.
+```
+
+```text
+用剪纸风格处理这张照片，保留原图。
+```
+
+### Generate from a description
+
+```text
+Use $make-paper-cut-collage to create a blue-gray paper-cut poster about solitude on a rainy day.
+```
+
+### Adjust the output
+
+You can specify these options in your request:
+
+| Option | Description | Example |
+| --- | --- | --- |
+| **Ratio** | Final canvas aspect ratio | "use 3:4 portrait" / "1:1 square" |
+| **Text** | Add or remove title text | "no text" / "add title SEASIDE" |
+| **Motif size** | Adjust paper-cut motif scale | "make the motif larger" |
+| **Motif position** | Move motif to a different corner | "put motif in lower-left" |
+| **Shadow** | Adjust contact shadow intensity | "less shadow" / "no shadow" |
+| **Photo crop** | Control how the source photo is cropped | "don't crop the photo" |
+
+### Examples of complete requests
+
+```text
+Use $make-paper-cut-collage on this travel photo. Keep the original photo on the left, paper version on the right. 3:4 ratio. Title: "SEASIDE".
+```
+
+```text
+把这张照片改成剪纸拼贴风格，保留原图，竖版4:3，不要文字，图案小一点。
+```
 
 ## Project structure
 
