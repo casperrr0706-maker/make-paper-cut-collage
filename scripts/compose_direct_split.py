@@ -53,6 +53,11 @@ def parse_args() -> argparse.Namespace:
         help="preferred transparent RGBA paper-cut motif with no page background or text",
     )
     parser.add_argument(
+        "--motif-white-bg",
+        action="store_true",
+        help="treat --motif input as a white-background image and auto-remove white to transparent before composing",
+    )
+    parser.add_argument(
         "--paper-panel",
         type=Path,
         help="legacy RGB paper-panel input; prefer --motif for new work",
@@ -1270,6 +1275,35 @@ def print_plan(
     print(f"FINAL_ASPECT={args.final_aspect or 'auto'}")
 
 
+def remove_white_background(
+    img: Image.Image,
+    pure_white: int = 240,
+    near_white: int = 220,
+) -> Image.Image:
+    """Remove a white background by making near-white pixels transparent.
+
+    Pixels where all RGB channels >= pure_white become fully transparent.
+    Pixels where all RGB channels >= near_white become half-transparent
+    for soft edge transitions. White paper pieces inside the motif are
+    preserved because they carry texture or shadow and won't reach both
+    thresholds on all channels. This matches the manual cutout approach
+    that was validated for clean edges.
+    """
+    img = img.convert("RGBA")
+    px = img.load()
+    w, h = img.size
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            if a == 0:
+                continue
+            if r >= pure_white and g >= pure_white and b >= pure_white:
+                px[x, y] = (r, g, b, 0)
+            elif r >= near_white and g >= near_white and b >= near_white:
+                px[x, y] = (r, g, b, 128)
+    return img
+
+
 def main() -> None:
     args = parse_args()
     validate_args(args)
@@ -1283,6 +1317,8 @@ def main() -> None:
 
     if args.motif is not None:
         collage_asset = Image.open(args.motif).convert("RGBA")
+        if args.motif_white_bg:
+            collage_asset = remove_white_background(collage_asset)
     else:
         collage_asset = Image.open(args.paper_panel).convert("RGB")
     output = compose(collage_asset, layout, args)
