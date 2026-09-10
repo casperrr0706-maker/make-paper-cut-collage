@@ -84,7 +84,7 @@ For a photo transformation:
 2. Label each image role explicitly as `edit target`, `style reference`, or `supporting input`.
 3. Use local referenced-image paths when all target images are local. If any target exists only in conversation context, include the smallest number of recent images that covers every target instead.
 4. Never provide both local referenced-image paths and recent-conversation image inclusion in the same call.
-5. If useful and compatible with the chosen input mechanism, include no more than two bundled style references. State that their subjects must not appear in the result.
+5. By default, pass ONLY the source photo as an image reference. Do not include style reference images by default—the written prompt constraints in this skill are sufficient to control paper-cut quality, abstraction level, and consistency. Style references are optional only when a specific result needs stronger style anchoring, and even then use no more than two bundled references, stating that their subjects must not appear in the result.
 6. Preserve only the source properties the user values: subject category, pose or silhouette, defining landmark, palette, or mood. Permit abstraction, cropping, illustration, photocopy, and halftone treatment as specified.
 
 For a preserved-photo direct splice, do not pass the source photo into a generative full-composite edit. Generate only one isolated transparent RGBA paper-cut motif, then assemble and verify the final flat image deterministically as described above. Use one ImageGen call by default. Allow at most one targeted generative revision, and only when subject recognition or the cut-paper material itself fails. Layout, motif scale, position, safe inset, paper texture, photo treatment, and typography must be corrected locally and never justify a generative retry.
@@ -95,17 +95,15 @@ Shape the prompt using the recipe in [references/prompt-recipes.md](references/p
 
 For any photo transformation, the image-generation step must follow this ordered fallback chain. Do not skip steps. Inform the user whenever a fallback beyond step 1 is used.
 
-1. **Primary — image-to-image with references.** Use the image-edit / image-to-image tool. Pass the original source photo as the first image reference, plus up to two bundled style references. Label the source photo as the subject reference and state that its exact silhouette and proportions must be recreated.
+1. **Primary — image-to-image with source photo only.** Use the image-edit / image-to-image tool. Pass ONLY the original source photo as the image reference (no style references by default). Label it as the subject reference and state that its exact silhouette and proportions must be recreated. The written prompt constraints in this skill control paper-cut quality and style.
 
 2. **Format-error retry — convert and retry.** If the image-edit tool returns an "Image Invalid", "unknown format", or similar format error, convert the source photo to JPEG or PNG by re-encoding it (do not just rename the file), re-upload to obtain a fresh URL, then retry step 1. WEBP files and phone screenshots are the most common triggers for this error.
 
-3. **Reduced-references retry — source photo only.** If step 2 still fails, call image-edit with only the source photo as a reference (omit the style references). This reduces the chance of a malformed multi-reference call.
+3. **Last resort — text-to-image with an over-specified prompt.** If image-edit is entirely unavailable or fails after steps 1–2, fall back to text-to-image (image generation from prompt only). The prompt must describe the subject's exact silhouette, proportions, colors, and every structural detail in concrete terms — for example, not "a cute cat" but "a silver tabby cat curled into a tight circle, eyes closed, one front paw raised, tail wrapped around body, on a brown oval bed…". **Must tell the user explicitly:** "Image-to-image is unavailable in this environment; the following result was generated from text only and may have lower similarity to the original photo."
 
-4. **Last resort — text-to-image with an over-specified prompt.** If image-edit is entirely unavailable or fails after steps 1–3, fall back to text-to-image (image generation from prompt only). The prompt must describe the subject's exact silhouette, proportions, colors, and every structural detail in concrete terms — for example, not "a cute plush doll" but "a round light-blue plush doll roughly 60% as tall as it is wide, wearing a white hat with black polka dots and a large black star…". **Must tell the user explicitly:** "Image-to-image is unavailable in this environment; the following result was generated from text only and may have lower similarity to the original photo."
+4. **Total failure — be honest.** If all generation paths fail, tell the user the image tool is temporarily unavailable and suggest retrying with a different image or later. Do not deliver a placeholder or pretend success.
 
-5. **Total failure — be honest.** If all generation paths fail, tell the user the image tool is temporarily unavailable and suggest retrying with a different image or later. Do not deliver a placeholder or pretend success.
-
-Never silently fall back to text-to-image without informing the user. A silent text-to-image result that does not resemble the source photo counts as a failed generation, not a successful one.
+Never silently fall back to text-to-image without informing the user. A silent text-to-image result that does not resemble the source photo counts as a failed generation, not a successful one. Style reference images are optional and may be added at step 1 only when stronger style anchoring is needed, but they are not required and should not be used by default.
 
 ## Validate and refine
 
